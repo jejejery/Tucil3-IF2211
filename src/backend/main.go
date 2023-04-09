@@ -8,13 +8,15 @@ import (
   // algorithm "backend/lib/algorithm"
   reader "backend/lib/reader"
   structs "backend/lib/structs"
- 
+  algo "backend/lib/algorithm"
+  "fmt"
 )
 
 func main() {
   var datainfo map[int]structs.MapValue = make(map[int]structs.MapValue)
   var graph structs.Graph;
   reader.ReadInput(&datainfo, &graph)
+  fmt.Println(algo.UCS(datainfo, graph, 0, 5))
   // // Set the router as the default one shipped with Gin
   // router := gin.Default()
   
