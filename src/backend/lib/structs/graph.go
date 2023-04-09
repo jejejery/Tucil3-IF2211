@@ -24,14 +24,15 @@ func GetNumNodes(graph Graph) int {
 
 func AddEdge(graph *Graph, source int, destination int, weight float64) {
     graph.adjMatrix[source][destination] = weight
-	graph.adjMatrix[destination][source] = weight
 }
 
 func RemoveEdge(graph *Graph, source int, destination int) {
     graph.adjMatrix[source][destination] = 0
-	graph.adjMatrix[destination][source] = 0
 }
 
+func GetValue(graph Graph, source int, destination int) float64 {
+    return graph.adjMatrix[source][destination]
+}
 
 func PrintGraph(graph Graph) {
     for i := 0; i < graph.numNodes; i++ {
