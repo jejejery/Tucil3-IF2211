@@ -14,9 +14,7 @@ func UCS(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int, i
 	structs.CreateEmpty(&currentNodeInfo, idxstart)
 
 	for structs.GetId(currentNodeInfo) != idxdest {
-		
 		if !util.IsMember(visited, structs.GetId(currentNodeInfo)) {
-			
 			for i := 0; i < structs.GetNumNodes(graph); i++ {
 				if (!util.IsMember(visited, i) && structs.GetValue(graph, structs.GetId(currentNodeInfo), i) != 0) {
 					var temp structs.NodeInfo
@@ -27,16 +25,13 @@ func UCS(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int, i
 					structs.CreateNode(&tempNode, temp)
 					
 					structs.Enqueue(&nodes, &tempNode)
-					
 				}
-				
 			}
 			visited = append(visited, structs.GetId(currentNodeInfo))
 		}
 		if (structs.LenQueue(nodes) == 0) {
 			return structs.CreateInvalidInfo()
 		}
-		
 		currentNodeInfo = structs.Dequeue(&nodes)
 	}
 	structs.CreateInfo(&currentNodeInfo, structs.GetId(currentNodeInfo), append(structs.GetPath(currentNodeInfo), structs.GetId(currentNodeInfo)), structs.GetPathCost(currentNodeInfo))

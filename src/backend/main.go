@@ -16,7 +16,8 @@ func main() {
   var datainfo map[int]structs.MapValue = make(map[int]structs.MapValue)
   var graph structs.Graph;
   reader.ReadInput(&datainfo, &graph)
-  fmt.Println(algo.UCS(datainfo, graph, 0, 5))
+  fmt.Println("UCS:", algo.UCS(datainfo, graph, 0, 5))
+  fmt.Println("Astar:", algo.AStar(datainfo, graph, 0, 5))
   // // Set the router as the default one shipped with Gin
   // router := gin.Default()
   
