@@ -1,36 +1,34 @@
 package structs
-
 import "fmt"
+
 type Graph struct {
-    nodes int
-    adj_matrix [][]float64
+    numNodes int
+    adjMatrix [][] float64;
 }
 
-func CreateGraph(nodes int) *Graph {
-    graph := &Graph{}
-    graph.nodes = nodes
-    graph.adj_matrix = make([][]float64, nodes)
-    for i := 0; i < nodes; i++ {
-        graph.adj_matrix[i] = make([]float64, nodes)
+func CreateGraph(graph *Graph, numNodes int) {
+    graph.numNodes = numNodes
+    graph.adjMatrix = make([][]float64, numNodes)
+    for i := 0; i < numNodes; i++ {
+        graph.adjMatrix[i] = make([]float64, numNodes)
     }
-    return graph
 }
 
-func (graph *Graph) AddEdge(source int, destination int, weight float64) {
-    graph.adj_matrix[source][destination] = weight
-	graph.adj_matrix[destination][source] = weight
+func AddEdge(graph *Graph, source int, destination int, weight float64) {
+    graph.adjMatrix[source][destination] = weight
+	graph.adjMatrix[destination][source] = weight
 }
 
-func (graph *Graph) RemoveEdge(source int, destination int) {
-    graph.adj_matrix[source][destination] = 0
-	graph.adj_matrix[destination][source] = 0
+func RemoveEdge(graph *Graph, source int, destination int) {
+    graph.adjMatrix[source][destination] = 0
+	graph.adjMatrix[destination][source] = 0
 }
 
 
-func (graph *Graph) PrintGraph() {
-    for i := 0; i < graph.nodes; i++ {
-        for j := 0; j < graph.nodes; j++ {
-            fmt.Printf("%.3f ",graph.adj_matrix[i][j])
+func PrintGraph(graph Graph) {
+    for i := 0; i < graph.numNodes; i++ {
+        for j := 0; j < graph.numNodes; j++ {
+            fmt.Printf("%.3f ",graph.adjMatrix[i][j])
         }
         fmt.Println()
     }
