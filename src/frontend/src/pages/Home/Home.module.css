@@ -1,0 +1,43 @@
+body, html {
+    height: 50%;
+}
+
+.img{
+    position: relative;
+    display: block;
+    top: 20%;
+    left: 500px;
+    margin: 0 0 0 0;
+    height: 100px;
+
+}
+
+.intro{
+    position: fixed;
+    display: block;
+    top: 50%;
+    left:450px;
+    margin: -50px 0 0 0;
+    height: 100px;
+
+}
+
+.outro{
+    position: fixed;
+    display: block;
+    bottom: 20%;
+    left:450px;
+    font-family: "Helvetica Neue", sans-serif;
+
+}
+
+.title{
+    position: relative;
+    left: 400px
+}
+
+#h1 {
+    font-family: "Helvetica Neue", sans-serif;
+  }
+
+
