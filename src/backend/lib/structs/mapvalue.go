@@ -5,15 +5,15 @@ type MapValue struct {
 	coordinate Point;
 }
 
-func createMapValue(mapValue *MapValue, name string, point Point) {
+func CreateMapValue(mapValue *MapValue, name string, point Point) {
 	mapValue.name = name;
 	mapValue.coordinate = point;
 }
 
-func getName(mapValue MapValue) string {
+func GetName(mapValue MapValue) string {
 	return mapValue.name;
 }
 
-func getCoordinate(mapValue MapValue) Point {
+func GetCoordinate(mapValue MapValue) Point {
 	return mapValue.coordinate;
 }

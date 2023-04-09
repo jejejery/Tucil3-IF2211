@@ -14,6 +14,14 @@ func CreateGraph(graph *Graph, numNodes int) {
     }
 }
 
+func GetAdjMatrix(graph Graph) [][] float64 {
+    return graph.adjMatrix
+}
+
+func GetNumNodes(graph Graph) int {
+    return graph.numNodes
+}
+
 func AddEdge(graph *Graph, source int, destination int, weight float64) {
     graph.adjMatrix[source][destination] = weight
 	graph.adjMatrix[destination][source] = weight

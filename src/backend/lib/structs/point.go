@@ -8,19 +8,19 @@ type Point struct {
 	y float64;
 }
 
-func createPoint(point *Point, x float64, y float64) {
+func CreatePoint(point *Point, x float64, y float64) {
 	point.x = x;
 	point.y = y;
 }
 
-func getX (point Point) float64 {
+func GetX(point Point) float64 {
 	return point.x;
 }
 
-func getY (point Point) float64 {
+func GetY(point Point) float64 {
 	return point.y;
 }
 
-func getDistance (p1 Point, p2 Point) float64 {
+func getDistance(p1 Point, p2 Point) float64 {
 	return math.Sqrt(math.Pow(p1.x - p2.x, 2) + math.Pow(p1.y - p2.y, 2))
 }
