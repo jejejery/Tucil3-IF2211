@@ -1,0 +1,17 @@
+.author{
+    position: fixed;
+    display: block;
+    top: 10%;
+    left: 100px;
+    margin: 0 0 0 0;
+    height: 100px;
+
+}
+
+.desc{
+    top: 40%;
+    position: fixed;
+    font-family: 'Roboto Condensed';
+    font-style: italic;
+}
+

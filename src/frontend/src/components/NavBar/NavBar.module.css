@@ -35,8 +35,10 @@ li, a, button{
 }
 
 .nav_items{
-    align-items: left;
+    position: relative;
+    align-items: right;
     display: inline-block;
+    left: 800px;
     padding: 0px 20px;
 }
 

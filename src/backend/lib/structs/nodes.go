@@ -6,9 +6,9 @@ type Node struct {
 }
 
 type NodeInfo struct {
-	id int
-	path []int
-	pathCost float64
+	id       int       
+    path     []int     
+    pathCost float64   
 }
 
 func CreateNode(node *Node, info NodeInfo) {

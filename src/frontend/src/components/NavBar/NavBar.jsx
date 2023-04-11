@@ -10,7 +10,7 @@ class NavBar extends React.Component {
         return (
                 <div className={styles.navbar}>
                 {/* create navbar variant dark */}
-                    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
                         <div class={styles.container_fluid}>
                             <a class="navbar-brand ms-4" href="/" >
                             {/* <img src={logo} width="50" height="50" class="d-inline-block align-top" alt=""/> */}

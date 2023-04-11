@@ -9,7 +9,6 @@ import Route_Planning from './pages/Route_Planning/Route_Planning';
   
 function App() {
   return (
-    
       <Router>
       <NavBar />
       <Routes>
