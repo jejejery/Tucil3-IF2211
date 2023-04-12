@@ -156,7 +156,7 @@ class Route_Planning extends React.Component {
     validateText(txt){
       const buff = txt.split(/\s+/);
 
-      buff.pop() //delete empty string
+      if(buff[buff.length-1] == "") buff.pop() //delete empty string
   
       //containts the buffer of the data
       let text_data =  new Data()
@@ -172,8 +172,7 @@ class Route_Planning extends React.Component {
       const node_atr = 3;
 
       for(const kata of buff){
-        
-       
+        console.log(kata)
         if(incr == 0){
           
           num = parseInt(kata,10);
@@ -222,14 +221,15 @@ class Route_Planning extends React.Component {
         }
         
       }
-
+      console.log("cp")
+      console.log(matrix)
+      console.log(matrix_ctr)
       //if matrix is fulllfiled
       if(matrix_ctr == num*num){
         //check the matrix symetry
         for (let i = 0; i < num; i++) {
-          for(let j = i; j < num; j++){
+          for(let j = 0; j < num; j++){
               if(i == j && matrix[i][j]!= 0) return false;
-              else if(matrix[i][j] != matrix[j][i]) return false;
           }
         }
 

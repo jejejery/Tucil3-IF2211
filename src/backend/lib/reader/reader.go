@@ -99,18 +99,19 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 	// How many vertices in graph?
 	iterator := 0
 	
-	numNodes, errNumNodes := strconv.Atoi(string(buf[iterator]))
+	numNodes, errNumNodes := strconv.Atoi(string(buffer[iterator]))
 	iterator++;
 	if(errNumNodes != nil){
 		c.String(http.StatusInternalServerError, fmt.Sprintf("error reading file: %s", err.Error()))
 		return
 	}
+
+
 	
 
 
 	//Add heruistic information
 	for i := 0; i < numNodes; i++ {
-			
 		name := buffer[iterator]
 		iterator++;
 
@@ -122,7 +123,8 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 			c.String(http.StatusInternalServerError, fmt.Sprintf("error reading file: %s", err.Error()))
 			return;
 		}
-
+		
+		fmt.Println(x)
 		ystr := buffer[iterator]
 		iterator++;
 		y, erry := strconv.ParseFloat(ystr, 64)
@@ -131,12 +133,14 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 			c.String(http.StatusInternalServerError, fmt.Sprintf("error reading file: %s", err.Error()))
 			return;
 		}
+		fmt.Println(y)
 
 		var p structs.Point
 		structs.CreatePoint(&p, x, y)
 		var val structs.MapValue
 		structs.CreateMapValue(&val, name, p)
 		(*datainfo)[i] = val
+		fmt.Println("end")
 	}
 
 	structs.CreateGraph(graph, numNodes)
