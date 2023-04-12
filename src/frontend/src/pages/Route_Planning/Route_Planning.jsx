@@ -279,6 +279,9 @@ class Route_Planning extends React.Component {
         return ("Rute: [" + path.toString() + "], Bobot kalkulasi(f(n)+g(n)): " 
         + pathCost.toFixed(3).toString() + ", dan jarak: " + this.state.dist.toString())
       }
+      else{
+        return ("Tidak terdapat rute!")
+      }
       
     }
 

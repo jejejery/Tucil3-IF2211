@@ -1,5 +1,5 @@
 # Tucil_3_IF2211
-Just ordinary routing algorithm for Stima, why so serious?
+Just ordinary routing algorithm for Stima, why so serious? 😏
 
 <p align="center">
   <img src="etc/display.jpg" title="route planning">
@@ -15,12 +15,12 @@ Just ordinary routing algorithm for Stima, why so serious?
 Tugas Kecil ini Merupakan Implementasi Algoritma UCS(Uniform Cost Search) dan A* (A-Star) dalam penentuan rute pada peta yang direpresentasikan dalam bentuk graf
 
 ## How To Run?
-Silakan clone repository ini terlebih dahulu, kemudian ikuti langkah di bawah ini untuk melakukan <i>setup environment</i>. Program ini disarnkan dijalankan pada sistem operasi Ubuntu.
+Silakan clone repository ini terlebih dahulu, kemudian ikuti langkah di bawah ini untuk melakukan <i>setup environment</i>. Program ini disarankan untuk dijalankan pada sistem operasi Ubuntu secara lokal.
 
 ### Backend
 Untuk menjalankan bagian belakang (backend) dari aplikasi web ini, Anda perlu menggunakan bahasa pemrograman Go. Jika Anda sudah mengunduh seluruh kode sumber dari repositori, berikut adalah cara untuk menjalankan bagian backend:
 
-1. Install Go[https://go.dev/doc/install]
+1. Install [Go](https://go.dev/doc/install)
 2. Untuk menjalankan di server lokal, ubah direktori ke src/backend
 3. Jalankan server backend dengan command : "go run ."
 4. Server backend dijalankan secara lokal pada `http://localhost:8000`
@@ -28,7 +28,7 @@ Untuk menjalankan bagian belakang (backend) dari aplikasi web ini, Anda perlu me
 
 ### Frontend
 Pastikan anda telah menginstall NodeJS dan NPM pada sistem operasi anda. Untuk menjalankan aplikasi, lakukan prosedur sebagai berikut:
-1. Lakukan instalasi NodeJS v18.15.0 dan NPM v9.6.4, berikut salah satu link yang bisa anda pakai untuk instalasi[https://nodejs.org/en/download]
+1. Lakukan instalasi NodeJS v18.15.0 dan NPM v9.6.4, berikut salah satu link yang bisa anda pakai untuk instalasi: [link](https://nodejs.org/en/download)
    Biasanya, instalasi NPM sudah sepaket dengan NodeJS
 2. Buka terminal baru yang tidak sama dengan terminal backend yang sudah dijalankan sebelumnya
 3. Lakukan perubahan ke folder "frontend" pada lokal anda, kemudian jalankan perintah `npm install` untuk menginstall seluruh <i>modules dependencies</i>
@@ -41,3 +41,5 @@ Pastikan anda telah menginstall NodeJS dan NPM pada sistem operasi anda. Untuk m
 1. Setelah mengakses `http://localhost:3000`, pergi ke halaman `Route planning`
 2. Masukkan file .txt yang sudah dengan format seperti contoh
 3. Enjoy the App!
+
+
