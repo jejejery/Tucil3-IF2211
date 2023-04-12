@@ -2,7 +2,7 @@
 Just ordinary routing algorithm for Stima, why so serious?
 
 <p align="center">
-  <img src="etc/display.jpg" width="350" title="hover text">
+  <img src="etc/display.jpg" title="route planning">
 </p>
 
 ## The Author
