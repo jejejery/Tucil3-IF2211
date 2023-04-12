@@ -15,7 +15,7 @@ Just ordinary routing algorithm for Stima, why so serious?
 Tugas Kecil ini Merupakan Implementasi Algoritma UCS(Uniform Cost Search) dan A* (A-Star) dalam penentuan rute pada peta yang direpresentasikan dalam bentuk graf
 
 ## How To Run?
-Silakan clone repository ini terlebih dahulu, kemudian ikuti langkah di bawah ini untuk melakukan <i>setup environment</i>. Program ini disarnkan dijalankan pada sistem operasi Windows.
+Silakan clone repository ini terlebih dahulu, kemudian ikuti langkah di bawah ini untuk melakukan <i>setup environment</i>. Program ini disarnkan dijalankan pada sistem operasi Ubuntu.
 
 ### Backend
 Untuk menjalankan bagian belakang (backend) dari aplikasi web ini, Anda perlu menggunakan bahasa pemrograman Go. Jika Anda sudah mengunduh seluruh kode sumber dari repositori, berikut adalah cara untuk menjalankan bagian backend:

@@ -1,78 +1,79 @@
 package main
 
 import (
-  "net/http"
-  "github.com/gin-gonic/gin"
-  algorithm "backend/lib/algorithm"
-  reader "backend/lib/reader"
-  structs "backend/lib/structs"
-  "fmt"
+	algorithm "backend/lib/algorithm"
+	reader "backend/lib/reader"
+	structs "backend/lib/structs"
+	"fmt"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-var datainfo map[int] structs.MapValue = make(map[int]structs.MapValue)
-var graph structs.Graph;
-var algo structs.NodeInfo;
-var heruistic_constants float64;
+var datainfo map[int]structs.MapValue = make(map[int]structs.MapValue)
+var graph structs.Graph
+var algo structs.NodeInfo
+var heruistic_constants float64
 
 func main() {
-	
+
 	r := gin.Default()
 
 	// Enable CORS
 	r.Use(corsMiddleware())
 
 	// Route for file uploads
-    r.POST("/upload", handleFileUpload)
+	r.POST("/upload", handleFileUpload)
 
 	// Algorithm Calculation
 	//request start and end
-	r.POST("/algo",handleReq)
+	r.POST("/algo", handleReq)
 
 	//calculate to throw route
-	r.GET("/algo",handleRouting)
+	r.GET("/algo", handleRouting)
 
-    // Start the server
-    r.Run(":8000")
+	// Start the server
+	r.Run(":8000")
 
 }
-func handleReq(c *gin.Context){
+func handleReq(c *gin.Context) {
 
-	var data struct{
+	var data struct {
 		Start string `json:"start"`
-		Dest string  `json:"dest"`
-		IsUCS bool 	 `json:"isUCS"`
+		Dest  string `json:"dest"`
+		IsUCS bool   `json:"isUCS"`
 	}
-	  if err := c.BindJSON(&data); err != nil {
+	if err := c.BindJSON(&data); err != nil {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
-	  }
+	}
 
 	start := 0
 	dest := 0
 	for key := range datainfo {
-		if(structs.GetName(datainfo[key]) ==data.Start){
+		if structs.GetName(datainfo[key]) == data.Start {
 			start = key
 		}
 
-		if(structs.GetName(datainfo[key]) ==data.Dest){
+		if structs.GetName(datainfo[key]) == data.Dest {
 			dest = key
 		}
 	}
 
 	if data.IsUCS {
-		algo = algorithm.UCS(datainfo,graph,start,dest)
+		algo = algorithm.UCS(datainfo, graph, start, dest)
 	} else {
-		algo = algorithm.AStar(datainfo,graph,start,dest, heruistic_constants)
+		algo = algorithm.AStar(datainfo, graph, start, dest, heruistic_constants)
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Data received successfully"})
 }
 
-func handleRouting(c *gin.Context){
-	var buff struct{
-		Id       int   	`json:"id"`    
+func handleRouting(c *gin.Context) {
+	var buff struct {
+		Id       int     `json:"id"`
 		Path     []int   `json:"path"`
-		PathCost float64   `json:"pathCost"`
+		PathCost float64 `json:"pathCost"`
 	}
 
 	buff.Id = structs.GetId(algo)
@@ -83,19 +84,19 @@ func handleRouting(c *gin.Context){
 }
 
 func handleFileUpload(c *gin.Context) {
-    // Get the uploaded file
-    file, err := c.FormFile("file")
-    if err != nil {
-        c.String(http.StatusBadRequest, fmt.Sprintf("error uploading file: %s", err.Error()))
-        return
-    }
+	// Get the uploaded file
+	file, err := c.FormFile("file")
+	if err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("error uploading file: %s", err.Error()))
+		return
+	}
 
-    // Save the file to disk
-    if err := c.SaveUploadedFile(file, file.Filename); err != nil {
-        c.String(http.StatusInternalServerError, fmt.Sprintf("error saving file: %s", err.Error()))
-        return
-    }
-	
+	// Save the file to disk
+	if err := c.SaveUploadedFile(file, file.Filename); err != nil {
+		c.String(http.StatusInternalServerError, fmt.Sprintf("error saving file: %s", err.Error()))
+		return
+	}
+
 	// Open the file
 	f, err := file.Open()
 	if err != nil {
@@ -104,11 +105,12 @@ func handleFileUpload(c *gin.Context) {
 	}
 	defer f.Close()
 
-    // Return a success message
-    reader.ReadInput(&datainfo, &graph, f,c,&heruistic_constants)
+	// Return a success message
+	reader.ReadInput(&datainfo, &graph, f, c, &heruistic_constants)
+	fmt.Println(heruistic_constants)
+	fmt.Println("hehe")
 	c.JSON(http.StatusOK, gin.H{"message": "Map succesfully readed!"})
 }
-
 
 // CORS middleware
 func corsMiddleware() gin.HandlerFunc {
@@ -123,4 +125,3 @@ func corsMiddleware() gin.HandlerFunc {
 		c.Next()
 	}
 }
-
