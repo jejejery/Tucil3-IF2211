@@ -75,7 +75,7 @@ func ReadInputLocal(datainfo *map[int]structs.MapValue, graph *structs.Graph, di
 	}
 }
 
-func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multipart.File, c *gin.Context) {
+func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multipart.File, c *gin.Context, her *float64) {
 
 	//preprocess the input.txt
 	buf := make([]byte, 1024)
@@ -105,10 +105,22 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 		c.String(http.StatusInternalServerError, fmt.Sprintf("error reading file: %s", err.Error()))
 		return
 	}
+	for{
+		if (string(buffer[iterator]) != ""){
+			break
+		} else{
+			iterator++;
+		}
+	}
 
 
-	
-
+	hc, errHc := strconv.ParseFloat(string(buffer[iterator]), 64)
+	iterator++;
+	if(errHc != nil){
+		c.String(http.StatusInternalServerError, fmt.Sprintf("error reading file: %s", err.Error()))
+		return
+	}
+	*her = hc
 
 	//Add heruistic information
 	for i := 0; i < numNodes; i++ {
@@ -124,7 +136,7 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 			return;
 		}
 		
-		fmt.Println(x)
+		
 		ystr := buffer[iterator]
 		iterator++;
 		y, erry := strconv.ParseFloat(ystr, 64)
@@ -133,17 +145,32 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 			c.String(http.StatusInternalServerError, fmt.Sprintf("error reading file: %s", err.Error()))
 			return;
 		}
-		fmt.Println(y)
+	
 
 		var p structs.Point
 		structs.CreatePoint(&p, x, y)
 		var val structs.MapValue
 		structs.CreateMapValue(&val, name, p)
 		(*datainfo)[i] = val
-		fmt.Println("end")
+
+		for{
+			if (string(buffer[iterator]) != ""){
+				break
+			} else{
+				iterator++;
+			}
+		}
 	}
 
 	structs.CreateGraph(graph, numNodes)
+
+	for{
+		if (string(buffer[iterator]) != ""){
+			break
+		} else{
+			iterator++;
+		}
+	}
 
 	for i := 0; i < numNodes; i++ {
 		for j := 0; j < numNodes; j++ {
@@ -157,8 +184,14 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
 			structs.AddEdge(graph, i, j, x)
 			iterator++;
 		}
+		for{
+			if (string(buffer[iterator]) != "" && i != numNodes-1){
+				break
+			} else{
+				iterator++;
+			}
+		}
 	}
-	fmt.Println(datainfo)
-	fmt.Println(structs.GetAdjMatrix(*graph))	
+	
 
 }

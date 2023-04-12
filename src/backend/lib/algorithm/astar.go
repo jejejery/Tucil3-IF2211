@@ -5,7 +5,7 @@ import (
 	util "backend/lib/util"
 )
 
-func AStar(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int, idxdest int) structs.NodeInfo {
+func AStar(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int, idxdest int, her float64) structs.NodeInfo {
 	var nodes structs.PrioQueue
 	structs.CreatePrioQueue(&nodes)
 	visited := make([]int, 0, 5)
@@ -21,7 +21,7 @@ func AStar(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int,
 					var temp structs.NodeInfo
 					tempPath := make([]int, len(structs.GetPath(currentNodeInfo)))
 					copy(tempPath, structs.GetPath(currentNodeInfo))
-					structs.CreateInfo(&temp, i, append(tempPath, structs.GetId(currentNodeInfo)), structs.GetPathCost(currentNodeInfo) + structs.GetValue(graph, structs.GetId(currentNodeInfo), i) + structs.GetDistance(structs.GetCoordinate(datainfo[i]), structs.GetCoordinate(datainfo[structs.GetId(currentNodeInfo)])))
+					structs.CreateInfo(&temp, i, append(tempPath, structs.GetId(currentNodeInfo)),her * structs.GetPathCost(currentNodeInfo) + structs.GetValue(graph, structs.GetId(currentNodeInfo), i) + structs.GetDistance(structs.GetCoordinate(datainfo[i]), structs.GetCoordinate(datainfo[structs.GetId(currentNodeInfo)])))
 					var tempNode structs.Node
 					structs.CreateNode(&tempNode, temp)
 					structs.Enqueue(&nodes, &tempNode)

@@ -12,6 +12,7 @@ import (
 var datainfo map[int] structs.MapValue = make(map[int]structs.MapValue)
 var graph structs.Graph;
 var algo structs.NodeInfo;
+var heruistic_constants float64;
 
 func main() {
 	
@@ -57,15 +58,11 @@ func handleReq(c *gin.Context){
 			dest = key
 		}
 	}
-	fmt.Println(start,dest)
-	fmt.Println("UCS:", algorithm.UCS(datainfo, graph, start, dest))
-	fmt.Println("Astar:", algorithm.AStar(datainfo, graph, start, dest))
+
 	if data.IsUCS {
 		algo = algorithm.UCS(datainfo,graph,start,dest)
-	}
-
-	if !data.IsUCS{
-		algo = algorithm.AStar(datainfo,graph,start,dest)
+	} else {
+		algo = algorithm.AStar(datainfo,graph,start,dest, heruistic_constants)
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Data received successfully"})
@@ -108,8 +105,8 @@ func handleFileUpload(c *gin.Context) {
 	defer f.Close()
 
     // Return a success message
-    reader.ReadInput(&datainfo, &graph, f,c)
-
+    reader.ReadInput(&datainfo, &graph, f,c,&heruistic_constants)
+	c.JSON(http.StatusOK, gin.H{"message": "Map succesfully readed!"})
 }
 
 

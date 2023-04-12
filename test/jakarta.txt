@@ -1,4 +1,5 @@
 10
+111.139
 Perempatan_Pramuka -6.19969 106.85373
 Pertigaan_Tambak -6.20263 106.84956
 Pertigaan_Manggarai -6.20794 106.84889

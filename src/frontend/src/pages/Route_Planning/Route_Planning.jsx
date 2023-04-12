@@ -22,7 +22,8 @@ class Route_Planning extends React.Component {
         graph : {
           nodes :[],
           edges : []
-        }
+        },
+        dist : 0
       };
       
     }
@@ -72,7 +73,7 @@ class Route_Planning extends React.Component {
             }
           )
           let path = respons.data.path
-          console.log(path)
+          let distance = 0
           for(let i = 0; i < path.length-1; i++){
             graph.edges.forEach(
               edge =>{
@@ -82,18 +83,18 @@ class Route_Planning extends React.Component {
                   edge.color = "#7be041"
                   edge.arrows = {to: true, from: false}
                   edge.width = 3
+                  distance += parseFloat(edge.label)
                 }
               }
             )
           }
-
-          console.log(graph)
           
         
           this.setState(
             {
               the_data : data_dum,
-              graph : graph
+              graph : graph,
+              dist : distance
             }
           )
         }
@@ -172,7 +173,7 @@ class Route_Planning extends React.Component {
       const node_atr = 3;
 
       for(const kata of buff){
-        console.log(kata)
+     
         if(incr == 0){
           
           num = parseInt(kata,10);
@@ -192,7 +193,14 @@ class Route_Planning extends React.Component {
           
           
         }
-
+        else if(incr == 1){
+          let her = parseFloat(kata);
+          if(isNaN(her)){
+            console.log("bukan number")
+            return false;
+          } 
+          incr++;
+        }
         else{
             if(node_ctr < num*node_atr){ //read each element to retrieve heruistic information
               if(node_ctr % node_atr == 0){
@@ -221,9 +229,7 @@ class Route_Planning extends React.Component {
         }
         
       }
-      console.log("cp")
-      console.log(matrix)
-      console.log(matrix_ctr)
+
       //if matrix is fulllfiled
       if(matrix_ctr == num*num){
         //check the matrix symetry
@@ -248,10 +254,9 @@ class Route_Planning extends React.Component {
         }
 
         for(let i = 0; i < matrix.length; i++){
-          for(let j = i+1; j < matrix.length; j++){
+          for(let j = 0; j < matrix.length; j++){
             if(matrix[i][j] != 0){
               graf.edges.push({from:i,to:j, color :"#e04141", label:matrix[i][j].toString(), arrows: { to: false, from:false }, width:1})
-              graf.edges.push({from:j,to:i, color :"#e04141", arrows: { to: false, from: false}, width:1})
             }
           }
         }
@@ -271,7 +276,8 @@ class Route_Planning extends React.Component {
 
     getRoute(path,pathCost){
       if(path != null && pathCost != 0){
-        return "Rute: [" + path.toString() + "], Bobot kalkulasi(f(n)+g(n)): " + pathCost.toString()
+        return ("Rute: [" + path.toString() + "], Bobot kalkulasi(f(n)+g(n)): " 
+        + pathCost.toFixed(3).toString() + ", dan jarak: " + this.state.dist.toString())
       }
       
     }
