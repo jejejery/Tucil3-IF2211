@@ -43,3 +43,23 @@ Pastikan anda telah menginstall NodeJS dan NPM pada sistem operasi anda. Untuk m
 3. Enjoy the App!
 
 
+### Tentang Format Input
+Berikut adalah contoh format input yang kami buat(abaikan comment yang diawali dengan "#"):
+```bash
+6 #Banyaknya simpul
+1 #Informasi heruistik sebagai perbandingan jarak peta(matriks berbobot) dan jarak yang diukur dengan rumus euclidian
+anima 2 0 #informasi posisi simpul pertama
+beca 4 0 #informasi posisi simpul kedua, dst...
+charlie 3 0
+delfi 0 0
+emanuella 0 0
+fifi 0 0
+0 2 4 0 5 0 #matriks ketetanggaan berbobot
+2 0 0 0 1 0
+4 0 0 3 0 0
+0 0 3 0 3 0
+5 1 0 3 0 0
+0 0 0 0 0 0
+```
+
+
