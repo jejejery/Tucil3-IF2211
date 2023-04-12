@@ -68,9 +68,6 @@ func ReadInputLocal(datainfo *map[int]structs.MapValue, graph *structs.Graph, di
 		}
 	}
 
-	fmt.Println(datainfo)
-	fmt.Println(structs.GetAdjMatrix(*graph))
-
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}

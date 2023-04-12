@@ -3,7 +3,6 @@ package algorithm
 import (
 	structs "backend/lib/structs"
 	util "backend/lib/util"
-	"fmt"
 )
 
 func AStar(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int, idxdest int, her float64) structs.NodeInfo {
@@ -34,7 +33,7 @@ func AStar(datainfo map[int]structs.MapValue, graph structs.Graph, idxstart int,
 			return structs.CreateInvalidInfo()
 		}
 
-		fmt.Println("AAAAAAAAAAAAAAAAAAAAAA")
+		
 		currentNodeInfo = structs.Dequeue(&nodes)
 	}
 	structs.CreateInfo(&currentNodeInfo, structs.GetId(currentNodeInfo), append(structs.GetPath(currentNodeInfo), structs.GetId(currentNodeInfo)), structs.GetPathCost(currentNodeInfo))
