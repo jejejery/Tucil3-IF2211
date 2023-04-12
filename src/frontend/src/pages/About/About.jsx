@@ -37,8 +37,16 @@ class About extends React.Component {
             </div>
             
             <div class = {styles.desc}>
-                <p1>Tugas Kecil ini Merupakan Implementasi Algoritma UCS(Uniform Cost Search) dan A* (A-Star) dalam penentuan rute pada peta yang direpresentasikan dalam bentuk graf</p1>
+              <div class = {styles.card}>
+                <p id = "p1">- Tugas Kecil ini Merupakan Implementasi Algoritma UCS(Uniform Cost Search) dan A* (A-Star) dalam penentuan rute pada peta</p>
+                <p id = "p1"> - Link repository tugas kecil ini: <a href = "https://github.com/jejejery/Tucil3-IF2211">Tucil 3</a> </p>
+              </div>      
             </div>
+
+            <div class = {styles.closing}>
+              <h3 >Thanks!</h3>
+            </div>
+            
             
                
         </div>

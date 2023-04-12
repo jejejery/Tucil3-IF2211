@@ -4,9 +4,6 @@ import { Form, Button } from "react-bootstrap";
 import axios from 'axios';
 import {Data} from '../../structs/data'
 import Graph from "react-graph-vis";
-import {v4 as uuidv4} from 'uuid';
-import { getOverlayDirection } from 'react-bootstrap/esm/helpers';
-
 
 
 class Route_Planning extends React.Component {  
@@ -58,9 +55,22 @@ class Route_Planning extends React.Component {
 
           let data_dum = this.state.the_data
           data_dum.setPath(respons.data.path)
-          data_dum.setDist(respons.data.id)
+          data_dum.setPathCost(respons.data.pathCost)
 
           let graph = this.state.graph
+
+          graph.edges.forEach(
+            edge =>{
+              edge.color = "#e04141"
+              edge.arrows = {to: false, from: false}
+              edge.width = 1
+            }
+          )
+          graph.nodes.forEach(
+            node => {
+              node.color = "#e04141"
+            }
+          )
           let path = respons.data.path
           console.log(path)
           for(let i = 0; i < path.length-1; i++){
@@ -234,7 +244,7 @@ class Route_Planning extends React.Component {
         }
 
         for(let i = 0; i < matrix.length; i++){
-          graf.nodes.push({id: i, label: places[i],color :"#e04141"})
+          graf.nodes.push({id: i, label:i.toString() + ". " + places[i],color :"#e04141"})
         }
 
         for(let i = 0; i < matrix.length; i++){
@@ -259,9 +269,9 @@ class Route_Planning extends React.Component {
      
     }
 
-    getRoute(path,dist){
-      if(path != null && dist != 0){
-        return "Rute: " + path.toString() + ", Jarak tempuh: " + dist.toString()
+    getRoute(path,pathCost){
+      if(path != null && pathCost != 0){
+        return "Rute: [" + path.toString() + "], Bobot kalkulasi(f(n)+g(n)): " + pathCost.toString()
       }
       
     }
@@ -278,7 +288,7 @@ class Route_Planning extends React.Component {
           <div class = {styles.map}>
             <div class = {styles.mapborder}>
               
-              <Graph graph = {this.state.graph} style={{ height: "400px" }}/>
+              <Graph graph = {this.state.graph} style={{ height: "300px" }}/>
             </div>
           </div>
           
@@ -311,10 +321,10 @@ class Route_Planning extends React.Component {
           <div class = {styles.map}>
             <div class = {styles.mapborder}>
               
-              <Graph graph = {graf} style={{ height: "400px" }}/>
+              <Graph graph = {graf} style={{ height: "300px" }}/>
              
             </div>
-            <p1>{this.getRoute(this.state.the_data.path,this.state.the_data.dist)}</p1>
+            <p1>{this.getRoute(this.state.the_data.path,this.state.the_data.pathCost)}</p1>
           </div>
           
           
@@ -343,7 +353,7 @@ class Route_Planning extends React.Component {
                   
           {/* Container */}
           <div className={styles.container}>
-            
+            <div className={styles.form}>
             <div class="d-grid gap-3">
               <Form onSubmit = {this.handleSubmit}>
                 <div className="Form">
@@ -419,6 +429,7 @@ class Route_Planning extends React.Component {
                   </div>
                 </div>
               </Form>
+            </div>
             </div>
           </div>
         {this.rendermap()}

@@ -57,6 +57,9 @@ func handleReq(c *gin.Context){
 			dest = key
 		}
 	}
+	fmt.Println(start,dest)
+	fmt.Println("UCS:", algorithm.UCS(datainfo, graph, start, dest))
+	fmt.Println("Astar:", algorithm.AStar(datainfo, graph, start, dest))
 	if data.IsUCS {
 		algo = algorithm.UCS(datainfo,graph,start,dest)
 	}
@@ -106,8 +109,7 @@ func handleFileUpload(c *gin.Context) {
 
     // Return a success message
     reader.ReadInput(&datainfo, &graph, f,c)
-	fmt.Println("UCS:", algorithm.UCS(datainfo, graph, 0, 5))
-	fmt.Println("Astar:", algorithm.AStar(datainfo, graph, 0, 5))
+
 }
 
 

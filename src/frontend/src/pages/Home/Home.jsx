@@ -35,7 +35,7 @@ class Home extends React.Component {
             
             <div class = {styles.outro}>
             <h2 id="h2">Pilih fitur yang tersedia pada navigation bar di atas</h2>
-            <h2 id="h3">Semoga aplikasi ini bermanfaat! 😃</h2>
+            <h2 id="h3">Semoga aplikasinya bermanfaat! 😃</h2>
             </div>
             
           

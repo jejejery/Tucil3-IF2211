@@ -88,7 +88,8 @@ func ReadInput(datainfo *map[int]structs.MapValue, graph *structs.Graph, f multi
     }
 
 	buffer := []string{}
-	lines := strings.Split(string(buf[:n]),"\n")
+	lines := strings.Split(string(buf[:n]),"\r\n")
+
 	for _, line := range lines {
 		lineWords := strings.Split(line, " ")
 		buffer = append(buffer, lineWords...)

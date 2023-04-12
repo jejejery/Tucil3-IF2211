@@ -6,7 +6,7 @@ export class Data{
       this.places = null // array of place
       this.matrix = null // adjacency matrix
       this.path = null // array of path
-      this.dist = 0
+      this.pathCost = 0
     }
   
     // setters
@@ -22,8 +22,8 @@ export class Data{
       this.path = path
     }
   
-    setDist(dist) {
-      this.dist = dist
+    setPathCost(pathCost) {
+      this.pathCost = pathCost
     }
   
     // getters
@@ -39,8 +39,8 @@ export class Data{
       return this.path
     }
   
-    getDist() {
-      return this.dist
+    getPathCost() {
+      return this.pathCost
     }
 
     

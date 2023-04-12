@@ -2,16 +2,43 @@
     position: fixed;
     display: block;
     top: 10%;
-    left: 100px;
+    left: 400px;
     margin: 0 0 0 0;
     height: 100px;
 
 }
 
+.card {
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
+    position: flex;
+    bottom: 275px;
+    padding: 16px;
+    margin: auto;
+    width: 800px;
+    height: 150px;
+    border-radius: 14px;
+    border: 3px solid #bb74a0;
+    background-color: #fefefe;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
 .desc{
     top: 40%;
     position: fixed;
-    font-family: 'Roboto Condensed';
-    font-style: italic;
+    left: 400px;
+    font-style: bold;
+    
 }
 
+#p1{
+    font-size: 9px;
+}
+
+.closing{
+    bottom: 10%;
+    position: fixed;
+    left: 50%;
+}
